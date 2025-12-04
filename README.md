@@ -19,17 +19,18 @@ Real-Time door locking mechanism
   - Arduino IDE
 
 * INSTRUCTIONS:
-  - Wire the Inside Controller Unit and Outside Controller Unit modules as shown in the diagrams below:
+  
+  Wire the Inside Controller Unit and Outside Controller Unit modules as shown in the diagrams below:
   
   ![InsideUnitController_WiringDiagram](https://github.com/user-attachments/assets/ddcec90c-b41e-4d01-a3e4-7d61aa804d34)
   ![OutsideUnitController_WiringDiagram](https://github.com/user-attachments/assets/49b6eb8a-7373-4180-92a5-bb199a227ccd)
 
-  - Clone the repository
+  Clone the repository
 
     ```bash
     git clone https://github.com/ryantcliff/AutomaticDoorLock.git
     ```
-  - Upload the following code to Outside Controller Unit to find the UID of RFID tags you wish to add as approved users:
+  Upload the following code to Outside Controller Unit to find the UID of RFID tags you wish to add as approved users:
 
     ```.ino
     #include <SPI.h>
@@ -73,7 +74,7 @@ Real-Time door locking mechanism
     }
     ```
 
-  - Add UIDs to ```approvedID idList[]``` in ```AutomaticDoorLock_Outside.ino``` in the format:
+  Add UIDs to ```approvedID idList[]``` in ```AutomaticDoorLock_Outside.ino``` in the format:
     ```.ino
     approvedID idList[] = {
       {"User1", {0xXX, 0xXX, 0xXX, 0xXX}},
@@ -85,7 +86,7 @@ Real-Time door locking mechanism
     };
     ```
 
-  - Upload the following code to the ```Inside Controller Unit``` and the ```Outside Controller Unit```:
+  Upload the following code to the ```Inside Controller Unit``` and the ```Outside Controller Unit```:
     ```.ino
     #include <SoftwareSerial.h>
 
@@ -106,5 +107,48 @@ Real-Time door locking mechanism
       }
     }
     ```
-  - This is how we will begin the process of pairing the HC-05 Bluetooth modules to each other
-  -   
+    This is how we will begin the process of pairing the HC-05 Bluetooth modules to each other.
+   
+  SLAVE CONFIGURATION:
+  - Hold down EN button on HC-05 while powering on to enter AT Mode.
+
+    HC-05 LED will change from a rapid blink to a slow blink if this is successful.
+  - In Serial Monitor, enter command
+
+    ```Serial
+      AT
+    ```
+    If HC-05 is in AT Mode,
+    
+    Output:
+    ```Serial
+      OK
+    ```
+  - To get HC-05 address, enter command
+    ```Serial
+      AT+ADDR?
+    ```
+    Output:
+    ```Serial
+      +ADDR:XXX:XXX:XXX
+    ```
+    The address will appear as set of hex values separated by colons. You will use this value to bind the master to the slave.
+  - To get HC-05 name, enter command
+    ```Serial
+      AT+NAME?
+    ```
+    You may change the name by entering command
+    ```Serial
+      AT+NAME=<Enter Name Here>
+    ```
+  - Change UART to 38400 by entering command
+    ```Serial
+      AT+UART=38400,0,0
+    ```
+  - Set HC-05 role to '0' to signal that it will be functioning as the slave by entering command
+    ```Serial
+      AT+ROLE=0
+    ```
+    
+
+      
