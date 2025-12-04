@@ -11,7 +11,7 @@ const int ECHO_PIN  = 6;
 
 const int PERSON_THRESHOLD = 30;
 
-const char MSTADDR[]="_._MASTER+ADDR:14:3:50b06";
+const char MSTADDR[]="<Master HC-05 Address>"; // Add Master HC-05 address here
 
 bool doorClosed=true;
 
