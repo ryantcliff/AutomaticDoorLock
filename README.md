@@ -84,3 +84,27 @@ Real-Time door locking mechanism
       .
     };
     ```
+
+  - Upload the following code to the ```Inside Controller Unit``` and the ```Outside Controller Unit```:
+    ```.ino
+    #include <SoftwareSerial.h>
+
+    SoftwareSerial mySerial(2, 3); // RX, TX
+
+    void setup() {
+      Serial.begin(9600);
+      Serial.println("Enter AT commands:");
+      mySerial.begin(38400);
+    }
+
+    void loop() {
+      if (mySerial.available()) {
+        Serial.write(mySerial.read());
+      }
+      if (Serial.available()) {
+        mySerial.write(Serial.read());
+      }
+    }
+    ```
+  - This is how we will begin the process of pairing the HC-05 Bluetooth modules to each other
+  -   
