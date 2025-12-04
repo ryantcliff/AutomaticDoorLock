@@ -10,13 +10,15 @@ const int ECHO_PIN        = 8;
 const int LOCK_LED_PIN    = 5;
 const int UNLOCK_LED_PIN  = 4;
 
-const int PERSON_THRESHOLD = 30;
-const int LOCK_ANGLE       = 10;
+const int PERSON_THRESHOLD = 30; // Adjust person threshold as needed. Value is in centimeters.
+
+// Adjust LOCK_ANGLE and UNLOCK_ANGLE as needed
+const int LOCK_ANGLE       = 10; 
 const int UNLOCK_ANGLE     = 90;
 
-const char SLVADDR[]="_.._SLAVE+ADDR:14:3:50a37";
+const char SLVADDR[]="<Slave HC-05 Address>"; // Add Slave HC-05 address here
 
-const unsigned long UNLOCK_HOLD = 5000;
+const unsigned long UNLOCK_HOLD = 5000; // Adjust UNLOCK_HOLD value as needed. Value is in milliseconds.
 unsigned long lastUnlockRequest = 0;
 
 #define LOCKED   true
@@ -327,4 +329,5 @@ void loop() {
 //     Serial.print("RECEIVED: ");
 //     Serial.println(c);
 //   }
+
 // }
