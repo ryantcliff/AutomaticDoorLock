@@ -25,9 +25,7 @@ struct approvedID {
 };
 
 approvedID idList[] = {
-  {"Ryan Antcliff", {0xB9, 0x95, 0x24, 0x12}},
-  {"Michelle Quispe", {0x86, 0x2A, 0x9F, 0xB8}},
-  {"Alexis Keeley", {0x66, 0xF3, 0x8E, 0xB8}}
+  // Add your approved UIDs here
 };
 const size_t NUM_IDS = sizeof(idList) / sizeof(idList[0]);
 
