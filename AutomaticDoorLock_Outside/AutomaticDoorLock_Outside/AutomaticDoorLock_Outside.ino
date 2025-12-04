@@ -9,7 +9,7 @@ const int RST_PIN   = 9;
 const int TRIG_PIN  = 7;
 const int ECHO_PIN  = 6;
 
-const int PERSON_THRESHOLD = 30;
+const int PERSON_THRESHOLD = 30; // Adjust person threshold as desired. Value is in centimeters.
 
 const char MSTADDR[]="<Master HC-05 Address>"; // Add Master HC-05 address here
 
