@@ -12,8 +12,9 @@ Real-Time door locking system
     - [Slave Configuration](#slave-configuration)
     - [Master Configuration](#master-configuration)
   - [Serial Environment Setup](#serial-environment-setup)
-
-## Components [^](#table-of-contents)
+    
+[^](#table-of-contents)
+## Components ## 
   - 5 1kΩ Resistors
   - 3 2kΩ Resistors
   - 2 Arduino UNO R3 (or equivalent)
