@@ -250,7 +250,7 @@ Real-Time door locking system
   >
   >If either modules are exhibiting a fast blink or a slow single-blink, perform a power cycle on both of them to attempt a connection.  
   >
-  >If this does not work, begin pairing steps again starting at the top of **PAIRING HC-05 MODULES**.
+  >If this does not work, begin pairing steps again starting at the top of [Pairing HC-05 Modules](#pairing-hc-05-modules).
 
   ---
 
