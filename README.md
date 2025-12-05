@@ -15,6 +15,10 @@ Real-Time door locking system
     
 [^](#table-of-contents)
 ## Components ## 
+<div style="text-align: right;">
+  <h3 id="table-of-contents">^</h3>
+</div>
+
   - 5 1kΩ Resistors
   - 3 2kΩ Resistors
   - 2 Arduino UNO R3 (or equivalent)
