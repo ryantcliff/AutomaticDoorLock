@@ -106,7 +106,7 @@ Real-Time door locking system
   
   ---
 
-  ### Pairing HC-05 Modules ###
+  ### Pairing HC-05 Modules [^](#table-of-contents)
   Upload the following code to the `Inside Controller Unit` and the `Outside Controller Unit`:
   ```.ino
   #include <SoftwareSerial.h>
