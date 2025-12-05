@@ -26,11 +26,14 @@ Real-Time door locking system
   ![522642603-49b6eb8a-7373-4180-92a5-bb199a227ccd](https://github.com/user-attachments/assets/7a5268ae-1760-4d8c-8fa2-6bff47908d3b)
 
   ---
+  
   Clone the repository
   ```bash
   git clone https://github.com/ryantcliff/AutomaticDoorLock.git
   ```
+  
   ---
+  
   Upload the following code to Outside Controller Unit to find the UID of RFID tags you wish to add as approved users:
   ```.ino
   #include <SPI.h>
@@ -73,7 +76,9 @@ Real-Time door locking system
     mfrc522.PCD_StopCrypto1(); // Stop encryption on PCD
   }
   ```
+  
   ---
+  
   Add UIDs to `approvedID idList[]` in `AutomaticDoorLock_Outside.ino` in the format:
   ```.ino
   approvedID idList[] = {
@@ -85,7 +90,9 @@ Real-Time door locking system
     .
   };
   ```
+  
   ---
+  
   Upload the following code to the `Inside Controller Unit` and the `Outside Controller Unit`:
   ```.ino
   #include <SoftwareSerial.h>
@@ -111,7 +118,8 @@ Real-Time door locking system
 
   ---
   
-  ### SLAVE CONFIGURATION ###
+  ### PAIRING HC-05 MODULES ###
+  #### SLAVE CONFIGURATION ####
   - Hold down EN button on HC-05 while powering on to enter AT Mode.
 
     HC-05 LED will change from a rapid blink to a slow blink if this is successful.
@@ -155,7 +163,7 @@ Real-Time door locking system
     ```Serial
       AT+UART=38400,0,0
     ```
-  ### MASTER CONFIGURATION ###
+  #### MASTER CONFIGURATION ####
   - Hold down EN button on HC-05 while powering on to enter AT Mode.
 
     HC-05 LED will change from a rapid blink to a slow blink if this is successful.
@@ -209,9 +217,13 @@ Real-Time door locking system
     ```Serial
       AT+UART=38400,0,0
     ```
-    ---
 
-    If the HC-05 modules are paired successfully, they will both exhibit a short double-blink. If either modules are exhibiting a fast blink or a slow single-blink, perform a power cycle on both of them to attempt a connection. If this does not work, begin pairing steps again starting at **Slave Configuration**.
+    ---
+    ##### Note: #####
+    If the HC-05 modules are paired successfully, they will both exhibit a short double-blink. If either modules are exhibiting a fast blink or a slow single-blink, perform a power cycle on both of them to attempt a connection. If this does not work, begin pairing steps again starting at the top of **PAIRING HC-05 MODULES**.
 
     ---
     
+    ### SETTING UP ENVIRONMENT ###
+    Once the HC-05 modules have been successfully paired, upload `AutomaticDoorLock_Inside.ino` and `AutomaticDoorLock_Outside.ino` to `Inside Controller Unit` and `Outside Controller Unit` respectively.
+    In the Arduino IDE, the serial
