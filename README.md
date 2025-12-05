@@ -22,9 +22,9 @@ Real-Time door locking system
   
   Wire the `Inside Controller Unit` and `Outside Controller Unit` modules as shown in the diagrams below:
   
-  ![InsideUnitController_WiringDiagram](https://github.com/user-attachments/assets/ddcec90c-b41e-4d01-a3e4-7d61aa804d34)
-  ![OutsideUnitController_WiringDiagram](https://github.com/user-attachments/assets/49b6eb8a-7373-4180-92a5-bb199a227ccd)
-  
+  ![522642377-ddcec90c-b41e-4d01-a3e4-7d61aa804d34](https://github.com/user-attachments/assets/b02b01e5-4a5c-4203-be08-40b6250b544c)
+  ![522642603-49b6eb8a-7373-4180-92a5-bb199a227ccd](https://github.com/user-attachments/assets/7a5268ae-1760-4d8c-8fa2-6bff47908d3b)
+
   ---
   Clone the repository
   ```bash
@@ -181,11 +181,21 @@ Real-Time door locking system
     ```Serial
       AT+NAME=<Enter Name Here>
     ```
-  - Set HC-05 role to '0' to signal that it will be functioning as the ***master*** by entering command
+  - Set HC-05 role to '1' to signal that it will be functioning as the ***master*** by entering command
     ```Serial
       AT+ROLE=1
     ```
-  - Set HC-05 cmode to 
+  - Set HC-05 cmode to '0' to allow discovery of other Bluetooth devices by entering command
+    ```Serial
+      AT+CMODE=0
+    ```
+  - To bind the ***master*** to the ***slave***, enter command
+    ```Serial
+      AT+BIND=XXX,XXX,XXX
+    ```
+    replacing `XXX,XXX,XXX` with the address of the ***slave***.
+
+    Note that the address you input here will not include `'ADDR+'`, and the colons are replaced with commas.
   - To get HC-05 address, enter command
     ```Serial
       AT+ADDR?
@@ -199,6 +209,9 @@ Real-Time door locking system
     ```Serial
       AT+UART=38400,0,0
     ```
-    
+    ---
 
-      
+    If the HC-05 modules are paired successfully, they will both exhibit a short double-blink. If either modules are exhibiting a fast blink or a slow single-blink, perform a power cycle on both of them to attempt a connection. If this does not work, begin pairing steps again starting at **Slave Configuration**.
+
+    ---
+    
