@@ -1,6 +1,7 @@
 # Automatic Door Lock #
 Real-Time door locking system
 
+<a name="top"></a>
 ## Table of Contents
 - [Components](#components)
 - [Required Software](#required-software)
@@ -12,12 +13,13 @@ Real-Time door locking system
     - [Slave Configuration](#slave-configuration)
     - [Master Configuration](#master-configuration)
   - [Serial Environment Setup](#serial-environment-setup)
+  - <div style="text-align: right;">
+  <h3 id="table-of-contents">^</h3>
+</div>
     
 [^](#table-of-contents)
 ## Components ## 
-<div style="text-align: right;">
-  <h3 id="table-of-contents">^</h3>
-</div>
+[Back to Top](#top)
 
   - 5 1kΩ Resistors
   - 3 2kΩ Resistors
