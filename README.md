@@ -27,18 +27,18 @@ Real-Time door locking system
   - 1 5V External Power Supply
   - Jumper Wires
 
-## Required Software ##
+## Required Software [^](#table-of-contents)
   - Arduino IDE
 
-## Instructions ##
-  ### Hardware Wiring ###
+## Instructions [^](#table-of-contents)
+  ### Hardware Wiring [^](#table-of-contents)
   Wire the `Inside Controller Unit` and `Outside Controller Unit` modules as shown in the diagrams below:
   
   ![522642377-ddcec90c-b41e-4d01-a3e4-7d61aa804d34](https://github.com/user-attachments/assets/b02b01e5-4a5c-4203-be08-40b6250b544c)
   ![522642603-49b6eb8a-7373-4180-92a5-bb199a227ccd](https://github.com/user-attachments/assets/7a5268ae-1760-4d8c-8fa2-6bff47908d3b)
 
   ---
-  ### Cloning the Repository ###
+  ### Cloning the Repository [^](#table-of-contents)
   Clone the repository
   ```bash
   git clone https://github.com/ryantcliff/AutomaticDoorLock.git
@@ -46,7 +46,7 @@ Real-Time door locking system
   
   ---
   
-  ### Adding Valid RFID Tags ###
+  ### Adding Valid RFID Tags [^](#table-of-contents)
   Upload the following code to Outside Controller Unit to find the UID of RFID tags you wish to add as approved users:
   ```.ino
   #include <SPI.h>
@@ -135,7 +135,7 @@ Real-Time door locking system
   
   ---
   
-  #### Slave Configuration ####
+  #### Slave Configuration [^](#table-of-contents)
   - Hold down EN button on HC-05 while powering on to enter AT Mode.
 
     HC-05 LED will change from a rapid blink to a slow blink if this is successful.
@@ -179,7 +179,7 @@ Real-Time door locking system
     ```Serial
       AT+UART=38400,0,0
     ```
-  #### Master Configuration ####
+  #### Master Configuration [^](#table-of-contents)
   - Hold down EN button on HC-05 while powering on to enter AT Mode.
 
     HC-05 LED will change from a rapid blink to a slow blink if this is successful.
@@ -243,7 +243,7 @@ Real-Time door locking system
 
   ---
     
-  ### Serial Environment Setup ###
+  ### Serial Environment Setup [^](#table-of-contents)
   Once the HC-05 modules have been successfully paired, upload `AutomaticDoorLock_Inside.ino` and `AutomaticDoorLock_Outside.ino` to the `Inside Controller Unit` and `Outside Controller Unit`, respectively.  
   
   In the Arduino IDE, the baud rate for the Serial Monitor **MUST** be changed back to **9600** so the debug info printed to Serial can be seen. If you keep the baud rate at 38400, you will only see the unreadable garbled output being sent between the HC-05 modules.
