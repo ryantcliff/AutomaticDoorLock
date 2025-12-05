@@ -28,11 +28,14 @@ Real-Time door locking system
   - 1 5V External Power Supply
   - Jumper Wires
 
-## Required Software [^](#table-of-contents)
+[^](#table-of-contents)
+## Required Software ##
   - Arduino IDE
 
-## Instructions [^](#table-of-contents)
-  ### Hardware Wiring [^](#table-of-contents)
+[^](#table-of-contents)
+## Instructions ##
+  [ToC ^](#table-of-contents)
+  ### Hardware Wiring ###
   Wire the `Inside Controller Unit` and `Outside Controller Unit` modules as shown in the diagrams below:
   
   ![522642377-ddcec90c-b41e-4d01-a3e4-7d61aa804d34](https://github.com/user-attachments/assets/b02b01e5-4a5c-4203-be08-40b6250b544c)
