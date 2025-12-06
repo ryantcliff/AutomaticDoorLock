@@ -13,9 +13,11 @@ Real-Time door locking system
     - [Slave Configuration](#slave-configuration)
     - [Master Configuration](#master-configuration)
   - [Serial Environment Setup](#serial-environment-setup)
-  
-## Components ## 
+ 
+---
+
 [Back to Top](#top)
+## Components ## 
 
   - 5 1kΩ Resistors
   - 3 2kΩ Resistors
@@ -30,13 +32,16 @@ Real-Time door locking system
   - 1 5V External Power Supply
   - Jumper Wires
 
+---
 
-## Required Software ##
 [Back to Top](#top)
+## Required Software ##
   - Arduino IDE
 
+---
+
+[Back to Top](#top)
 ## Instructions ##
-  [Back to Top](#top)
   ### Hardware Wiring ###
   Wire the `Inside Controller Unit` and `Outside Controller Unit` modules as shown in the diagrams below:
   
@@ -263,6 +268,7 @@ Real-Time door locking system
 
   ### Serial Environment Setup ###
   [Back to Top](#top)
+  
   Once the HC-05 modules have been successfully paired, upload `AutomaticDoorLock_Inside.ino` and `AutomaticDoorLock_Outside.ino` to the `Inside Controller Unit` and `Outside Controller Unit`, respectively.  
   
   In the Arduino IDE, the baud rate for the Serial Monitor **MUST** be changed back to **9600** so the debug info printed to Serial can be seen. If you keep the baud rate at 38400, you will only see the unreadable garbled output being sent between the HC-05 modules.
