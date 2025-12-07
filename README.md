@@ -308,7 +308,7 @@ Now the system is initialized and ready for operation.
 
 - When both conditions have been met, the Master HC-05 on the `Outside Controller Unit` will send a '0' to the Slave HC-05 on the `Inside Controller Unit`, signaling an 'Unlock Request' that will cause the lock state LEDs and Servo to transition states in the same way stated in [Inside Operation](#inside-operation).
 
-- If the Ultrasonic Sensor is triggered and an ***invalid*** UID is read by the RFID module, the Master HC-05 on the `Outside Controller Unit` will send a '1' to the Slave HC-05 on the `Inside Controller Unit`, signaling a 'Lock Request'. If the system is in the ***UNLOCKED*** state, this will change the lock state LEDs from **Green *(UNLOCKED)*** --> **Red (LOCKED)*** and the Servo to move from `UNLOCK_ANGLE` --> `LOCK_ANGLE`. If the system is already in the ***LOCKED*** state, nothing will happen.
+- If the Ultrasonic Sensor is triggered and an ***invalid*** UID is read by the RFID module, the Master HC-05 on the `Outside Controller Unit` will send a '1' to the Slave HC-05 on the `Inside Controller Unit`, signaling a 'Lock Request'. If the system is in the ***UNLOCKED*** state, this will change the lock state LEDs from **Green *(UNLOCKED)*** --> **Red (LOCKED)*** and cause the Servo to move from `UNLOCK_ANGLE` --> `LOCK_ANGLE`. If the system is already in the ***LOCKED*** state, nothing will happen.
 
 - If the Ultrasonic Sensor is triggered but no UIDs are read by the RFID module, nothing will happen.
 
