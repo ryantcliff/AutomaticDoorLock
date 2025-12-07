@@ -48,8 +48,8 @@ Real-time automatic door locking system
   ### Hardware Wiring ###
   Wire the `Inside Controller Unit` and `Outside Controller Unit` modules as shown in the diagrams below:
   
-  ![522642377-ddcec90c-b41e-4d01-a3e4-7d61aa804d34](https://github.com/user-attachments/assets/b02b01e5-4a5c-4203-be08-40b6250b544c)
-  ![522642603-49b6eb8a-7373-4180-92a5-bb199a227ccd](https://github.com/user-attachments/assets/7a5268ae-1760-4d8c-8fa2-6bff47908d3b)
+  ![InsideUnitController_WiringDiagram](https://github.com/user-attachments/assets/e13c7240-64f8-4881-9ef8-531e54a75543)
+  ![OutsideUnitController_WiringDiagram](https://github.com/user-attachments/assets/8c17d888-fb0c-4c63-8ea3-af288f17e96c)
 
   ---
 
