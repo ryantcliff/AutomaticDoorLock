@@ -1,5 +1,5 @@
 # Automatic Door Lock #
-Real-Time door locking system
+Real-time automatic door locking system
 
 <a name="top"></a>
 ## Table of Contents
