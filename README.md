@@ -132,20 +132,20 @@ Real-time automatic door locking system
   ```.ino
   #include <SoftwareSerial.h>
 
-  SoftwareSerial mySerial(2, 3); // RX, TX
+  SoftwareSerial BT(2, 3); // RX, TX
 
   void setup() {
     Serial.begin(9600);
     Serial.println("Enter AT commands:");
-    mySerial.begin(38400);
+    BT.begin(38400);
   }
 
   void loop() {
-    if (mySerial.available()) {
-      Serial.write(mySerial.read());
+    if (BT.available()) {
+      Serial.write(BT.read());
     }
     if (Serial.available()) {
-      mySerial.write(Serial.read());
+      BT.write(Serial.read());
     }
   }
   ```
