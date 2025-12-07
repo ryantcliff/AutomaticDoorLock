@@ -150,9 +150,11 @@ Real-time automatic door locking system
   }
   ```
   This is how we will begin the process of pairing the HC-05 Bluetooth modules to each other.
-  To see any output in the Serial Monitor, you **MUST** set the baud rate in the Serial Monitor to match the baud rate we set above for the Bluetooth modules, **38400**.  
-  
-  If you are seeing garbled output in the Serial Monitor, this is most certainly the reason why.
+
+  >[!IMPORTANT]
+  >To see any output in the Serial Monitor, you **MUST** set the baud rate in the Serial Monitor to match the baud rate we set above for the Bluetooth modules, **38400**.  
+  >
+  >If you are seeing garbled output in the Serial Monitor, this is most certainly the reason why.
   
   ---
 
@@ -196,7 +198,9 @@ Real-time automatic door locking system
     >+ADDR:XXX:XXX:XXX
     
     The address will appear as set of hex values separated by colons. You will use this value to bind the master to the slave.
-    You may also use this value to fill in `const char SLVADDR[]` in `AutomaticDoorLock_Inside.ino`.
+
+  >[!TIP]
+  >You may use this address to assign a value to `const char SLVADDR[]` in `AutomaticDoorLock_Inside.ino` for clearer formatting in the Serial Monitor output.
     
   - Change UART to 38400 by entering command
     ```Serial
@@ -235,17 +239,21 @@ Real-time automatic door locking system
     ```Serial
       AT+ROLE=1
     ```
+    
   - Set HC-05 cmode to '0' to allow discovery of other Bluetooth devices by entering command
     ```Serial
       AT+CMODE=0
     ```
+    
   - To bind the ***master*** to the ***slave***, enter command
     ```Serial
       AT+BIND=XXX,XXX,XXX
     ```
-    replacing `XXX,XXX,XXX` with the address of the ***slave***.
+    replacing `XXX,XXX,XXX` with the address of the ***Slave HC-05***.
 
-    Note that the address you input here will not include `'ADDR+'`, and the colons are replaced with commas.
+  >[!IMPORTANT]
+  >The address you input with `AT+BIND=` will not include the `'+ADDR:'` that appears in the original address, and the colons from the original address are replaced with commas.
+    
   - To get HC-05 address, enter command
     ```Serial
       AT+ADDR?
@@ -254,7 +262,10 @@ Real-time automatic door locking system
     >+ADDR:XXX:XXX:XXX
     
     The address will appear as set of hex values separated by colons.
-    You may also use this value to fill in `const char MSTADDR[]` in `AutomaticDoorLock_Outside.ino`.
+    
+  > [!TIP]
+  > You may use this address to assign a value to `const char MSTADDR[]` in `AutomaticDoorLock_Outside.ino` for clearer formatting in the Serial Monitor output.
+    
   - Change UART to 38400 by entering command
     ```Serial
       AT+UART=38400,0,0
