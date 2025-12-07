@@ -60,9 +60,9 @@ void setLock(bool lockState) {
   }
 
   delay(300);
-  lockServo.detach();
+  lockServo.detach();  // Detach the servo after changing positions to avoid servo jitter while idle
 
-  if(lockState == LOCKED) {
+  if(lockState == LOCKED) {  // Print debug info to Serial and change lock state LEDs
     Serial.print(SLVADDR);
     Serial.println(": locked");
     digitalWrite(LOCK_LED_PIN, HIGH);
@@ -93,7 +93,7 @@ void setup() {
 void loop() {
   unsigned long now = millis();
 
-  if(BT.available()) {
+  if(BT.available()) {					// Check for incoming lock/unlock requests from OutsideControllerUnit
     char requestVal = BT.read();
     Serial.print(SLVADDR);
     Serial.print(": RECEIVED: ");
@@ -115,7 +115,7 @@ void loop() {
     
   }
 
-  if(now - lastMagnetCheck >= 100) {
+  if(now - lastMagnetCheck >= 100) {			// Check the Magnetic Door Switch to determine if door is open or closed
     lastMagnetCheck = now;
     int magnetState = digitalRead(MAGNET_PIN);
     doorClosed = (magnetState == LOW);
@@ -331,3 +331,4 @@ void loop() {
 //   }
 
 // }
+
