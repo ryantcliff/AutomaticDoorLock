@@ -13,6 +13,9 @@ Real-Time door locking system
     - [Slave Configuration](#slave-configuration)
     - [Master Configuration](#master-configuration)
   - [Serial Environment Setup](#serial-environment-setup)
+  - [Initializing the System](#initializing-the-system)
+  - [Operation](#operation)
+    - [Operation State Table](#operation-state-table)
  
 ---
 
@@ -257,7 +260,7 @@ Real-Time door locking system
       AT+UART=38400,0,0
     ```
     
-  >**Note:**  
+  >[!NOTE]
   >If the HC-05 modules are paired successfully, they will both exhibit a short double-blink.  
   >
   >If either modules are exhibiting a fast blink or a slow single-blink, perform a power cycle on both of them to attempt a connection.  
@@ -270,7 +273,60 @@ Real-Time door locking system
   [Back to Top](#top)
   
   Once the HC-05 modules have been successfully paired, upload `AutomaticDoorLock_Inside.ino` and `AutomaticDoorLock_Outside.ino` to the `Inside Controller Unit` and `Outside Controller Unit`, respectively.  
-  
-  In the Arduino IDE, the baud rate for the Serial Monitor **MUST** be changed back to **9600** so the debug info printed to Serial can be seen. If you keep the baud rate at 38400, you will only see the unreadable garbled output being sent between the HC-05 modules.
 
+  >[!IMPORTANT]
+  >In the Arduino IDE, the baud rate for the Serial Monitor **MUST** be changed back to **9600** so the debug info printed to Serial can be seen. If you keep the baud rate at 38400, you will only see the unreadable garbled output being sent between the HC-05 modules.
+
+  ---
+
+  ### Initializing the System ###
+  [Back to Top](#top)
+
+  When the `Inside Controller Unit` and the `Outside Controller Unit` are powered on, the system is ready to be initialized when ***both*** indicator LEDs are lit on the `Inside Controller Unit`.
+
+  To initialize and put the system in active mode:
+  
+  1. Ensure the `Magnetic Door Switch` is closed
+  2. Trigger the `Ultrasonic Sensor` on the `Inside Controller Unit` by putting anything in front of it within its `PERSON_THRESHOLD`.
+
+  The Red LED will turn off and the Servo will turn to the `UNLOCK_ANGLE` for `UNLOCK_HOLD` milliseconds, then the Green LED will turn off, the Red LED will turn on, and the Servo will turn to the `LOCK_ANGLE`.
+
+  Now the system is initialized and ready for operation.
+
+  ---
+
+  ### Operation ###
+  [Back to Top](#top)
+
+  #### Inside Operation ####
+  - To unlock the door from the inside, simply trigger the Ultrasonic Sensor by putting anything in front of it within its `PERSON_THRESHOLD`.  
+  - The lock state LEDs will go from **Red *(LOCKED)*** --> **Green *(UNLOCKED)*** and the Servo will move from `LOCK_ANGLE` --> `UNLOCK_ANGLE` for `UNLOCK_HOLD` milliseconds.  
+  - If the Magnetic Door Switch is then opened before `UNLOCK_HOLD` milliseconds has elapsed, the system will remain in the ***UNLOCKED*** state and both units will pause ultrasonic readings until the Magnetic Door Switch is closed, which will then change the lock state LEDs from **Green *(UNLOCKED)*** --> **Red (LOCKED)*** and the Servo from `UNLOCK_ANGLE` --> `LOCK_ANGLE`.
+
+  #### Outside Operation ####
+  - To unlock the door from the outside, two conditions must be met at the same time:
+    1. The outside Ultrasonic Sensor must be triggered
+    2. A ***valid*** UID must be read by the RFID module
+
+  - When both conditions have been met, the Master HC-05 on the `Outside Controller Unit` will send a '0' to the Slave HC-05 on the `Inside Controller Unit`, signaling an 'Unlock Request' that will cause the lock state LEDs and Servo to transition states in the same way stated in [Inside Operation](#inside-operation).
+
+  - If the Ultrasonic Sensor is triggered and an ***invalid*** UID is read by the RFID module, the Master HC-05 on the `Outside Controller Unit` will send a '1' to the Slave HC-05 on the `Inside Controller Unit`, signaling a 'Lock Request'. If the system is in the ***UNLOCKED*** state, this will change the lock state LEDs from **Green *(UNLOCKED)*** --> **Red (LOCKED)*** Servo to move from `UNLOCK_ANGLE` --> `LOCK_ANGLE`. If the system is already in the ***LOCKED*** state, nothing will happen.
+
+  - If the Ultrasonic Sensor is triggered but no UIDs are read by the RFID module, nothing will happen.
+
+  - If the RFID module reads a UID, but the Ultrasonic Sensor is not triggered, the `Outside Controller Unit` will print to the Serial Monitor whether the UID is accepted or denied, but it ***will <ins>NOT</ins>*** send any 'Unlock/Lock Requests' to the `Inside Controller Unit`.
+
+  #### Operation State Table ####
+  [Back to Top](#top)
+
+  | Current State | Next State | Door Open | Inside Ultrasonic Sensor Triggered | Outside Ultrasonic Sensor Triggered | RFID Valid UID Read | RFID Invalid UID Read | (now - lastUnlockRequest) >= UNLOCK_HOLD |
+  |---------------|------------|-----------|------------------------------------|-------------------------------------|---------------------|-----------------------|------------------------------------------|
+  | Locked        | Unlocked   | X | Yes | X | X | X | X |
+  | Locked        | Unlocked   | X | X | Yes | Yes | No | X |
+  | Locked        | Locked     | X | No | Yes | X | Yes | X |
+  | Unlocked      | Locked     | No | No | X | No | X | Yes |
+  | Unlocked      | Locked     | No | No | No | X | X | Yes |
+  | Unlocked      | Locked     | No | No | Yes | X | Yes | X |
+  | Unlocked      | Unlocked   | Yes | X | X | X | X | X |
+  
   ---
